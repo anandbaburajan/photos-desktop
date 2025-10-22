@@ -61,6 +61,14 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Create electron-builder publish config
+        # Create a temporary publish configuration that overrides the repository
+        run: |
+          echo 'publish:' > electron-builder-publish.yml
+          echo '  provider: github' >> electron-builder-publish.yml
+          echo '  owner: ${{ github.repository_owner }}' >> electron-builder-publish.yml
+          echo '  repo: ${{ github.event.repository.name }}' >> electron-builder-publish.yml
+
       - name: Build
         uses: ente-io/action-electron-builder@eff78a1d33bdab4c54ede0e5cdc71e0c2cf803e2
         with:
@@ -73,6 +81,9 @@ jobs:
 
           # Passes `--publish always` to electron-builder
           release: true
+
+          # Tell electron-builder to use our custom publish config
+          args: --config electron-builder-publish.yml
         env:
           # Default is "draft", but since our nightly builds update
           # existing pre-releases, set this to "prerelease".
