@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       source:
-        description: "Branch (ente-io/ente) to build"
+        description: "Branch (anandbaburajan/ente) to build"
         type: string
   schedule:
     # Run every weekday at ~8:00 AM IST.
