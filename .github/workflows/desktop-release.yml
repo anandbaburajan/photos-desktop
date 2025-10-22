@@ -74,11 +74,6 @@ jobs:
           # Passes `--publish always` to electron-builder
           release: true
         env:
-          # Windows Azure Trusted Signing related values
-          # https://www.electron.build/code-signing-win#using-azure-trusted-signing-beta
-          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
           # Default is "draft", but since our nightly builds update
           # existing pre-releases, set this to "prerelease".
           EP_PRE_RELEASE: true
